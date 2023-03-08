@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnualLeaveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,12 @@ Route::get('/test-grid', function() {
 Route::get('/test-flex', function() {
     return view('test-flex');
 });
+
+// Untuk membuat permohonan cuti baru
+Route::post('/annual-leaves', [AnnualLeaveController::class, 'create'])->name('cuti_create');
+
+// Untuk menampilkan list permohonan cuti yang sudah masuk
+Route::get('/annual-leaves', [AnnualLeaveController::class, 'index'])->name('cuti_index');
+
+// Untuk menampilkan satu data permohonan izin sesuai dengan id cuti
+Route::get('/annual-leaves/{id}', [AnnualLeaveController::class, 'show'])->name('cuti_show');
